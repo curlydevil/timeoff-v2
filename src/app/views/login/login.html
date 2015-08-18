@@ -1,0 +1,22 @@
+<div>
+    <div class="panel panel-primary screen-center login-form">
+        <div class="panel-heading" style="font-size: large">
+            Log in to proceed
+        </div>
+        <div class="panel-body">
+            <div class="input-group logon-input">
+                <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                <input type="text" class="form-control" ng-model="vm.user.userName" maxlength="30" placeholder="Username" required>
+            </div>
+            <br/>
+            <div class="input-group">
+                <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
+                <input type="password" class="form-control" ng-model="vm.user.password" ng-trim="false" maxlength="64" placeholder="Password" required>
+            </div>
+            <br/>
+            <button type="button" class="btn btn-primary btn-block" title="Log in" ng-click="vm.logIn()">
+                Log in
+            </button>
+        </div>
+    </div>
+</div>

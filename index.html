@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>Time off</title>
+
+    <!-- build:css styles/lib.css -->
+    <!-- bower:css -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <!-- endbower -->
+
+    <!-- inject:css -->
+    <link rel="stylesheet" href="src/styles/styles.css">
+    <!-- endinject -->
+    <!-- endbuild -->
+
+</head>
+
+<body ng-app="timeoff">
+    <nav class="navbar navbar-inverse" ng-controller="NavBarController as vm">
+        <div class="container">
+            <a ui-sref="dashboard" class="navbar-brand">Time OFF</a>
+
+            <div class="navbar-header">
+                <button class="navbar-toggle" ng-click="vm.isCollapsed = !vm.isCollapsed">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+            </div>
+            <div class="navbar-collapse" collapse='vm.isCollapsed' ng-if="vm.isLoggedIn()">
+                <ul class="nav navbar-nav">
+                    <li ng-repeat="navItem in vm.getNavigationItems()" ng-if="vm.isTabAllowed(navItem)" ng-class="{ active: vm.isTabActive(navItem.name)}">
+                        <a ui-sref='{{navItem.name}}'>{{navItem.title}}</a>
+                    </li>
+                </ul>
+
+                <ul class="nav navbar-nav navbar-right" ng-if="vm.isLoggedIn()">
+                    <li class="clickable-element">
+                        <a class="navbar-application-user-info" ng-click="vm.showCurrentUserProfile()">
+                            <img class="user-minipic" ng-if="vm.getUser().picture.length" ng-src="data:image/png;base64,{{vm.getUser().picture}}">
+                            <i ng-if="!vm.getUser().picture.length" class="user-minipic glyphicon glyphicon-user"></i> {{vm.getUser().fullName}}
+                        </a>
+                    </li>
+                    <li>
+                        <a ng-click="vm.logOut()" class="clickable"><i class="glyphicon glyphicon-off"></i></a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <div ui-view></div>
+    </div>
+
+    <!-- build:js js/lib.js -->
+    <script src="http://code.jquery.com/jquery-2.1.4.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.4/angular.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.2.15/angular-ui-router.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.3/underscore-min.js"></script>
+    <!-- bower:js -->
+    <!-- endbower -->
+
+    <!-- inject:js -->
+    <script src="src/app/app.js"></script>
+    <script src="src/app/common/common.services.js"></script>
+    <script src="src/app/common/services/enumService.js"></script>
+    <script src="src/app/common/services/userService.js"></script>
+    <script src="src/app/common/services/authorizationService.js"></script>
+    <script src="src/app/common/services/unauthorizedInterceptorService.js"></script>
+    <script src="src/app/navigation/navigationController.js"></script>
+    <script src="src/app/navigation/navigationService.js"></script>
+
+    <script src="src/app/views/absenceRequests/absenceRequestsController.js"></script>
+    <script src="src/app/views/calendar/calendarController.js"></script>
+    <script src="src/app/views/dashboard/dashboardController.js"></script>
+    <script src="src/app/views/employeeGroups/employeeGroupsController.js"></script>
+    <script src="src/app/views/employeePositions/employeePositionsController.js"></script>
+    <script src="src/app/views/employees/employeesController.js"></script>
+    <script src="src/app/views/login/loginController.js"></script>
+    <script src="src/app/views/logs/logsController.js"></script>
+    <script src="src/app/views/overtimes/overtimesController.js"></script>
+    <script src="src/app/views/reports/reportsController.js"></script>
+    <script src="src/app/views/specialDays/specialDaysController.js"></script>
+    <script src="src/app/views/tasks/tasksController.js"></script>
+    <script src="src/app/routing.js"></script>
+    <!-- endinject -->
+
+    <!-- inject:templates:js -->
+    <!-- endinject -->
+    <!-- endbuild -->
+
+</body>
+
+</html>
