@@ -2,9 +2,10 @@
     'use strict';
     angular.module('common.services')
         .service('authorizationService', ['$q', '$state',
-                                          'enumService', 'userService', authorizationService]);
+                                          'enumService', 'userService',
+                                          'communicationService', authorizationService]);
 
-    function authorizationService($q, $state, enumService, userService) {
+    function authorizationService($q, $state, enumService, userService, communicationService) {
         var userRoles = enumService.getUserRoles();
 
         var viewsRestrictions = {
@@ -70,8 +71,9 @@
             return userAccess.promise;
         }
 
-        function logIn(login, password) {
-            userService.loadUser();
+        function logIn(user) {
+            return communicationService.logIn(user).then(
+                userService.loadUser);
         }
 
         function logOut() {

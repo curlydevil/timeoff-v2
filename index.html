@@ -9,6 +9,7 @@
     <!-- build:css styles/lib.css -->
     <!-- bower:css -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/humane-js/3.2.2/themes/flatty.min.css">
     <!-- endbower -->
 
     <!-- inject:css -->
@@ -18,7 +19,7 @@
 
 </head>
 
-<body ng-app="timeoff">
+<body ng-app="timeoff" ng-strict-di>
     <nav class="navbar navbar-inverse" ng-controller="NavBarController as vm">
         <div class="container">
             <a ui-sref="dashboard" class="navbar-brand">Time OFF</a>
@@ -60,8 +61,10 @@
     <script src="http://code.jquery.com/jquery-2.1.4.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.4/angular.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.2.15/angular-ui-router.min.js"></script>
+    <script src="https://code.angularjs.org/1.4.4/angular-resource.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.3/underscore-min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/humane-js/3.2.2/humane.min.js"></script>
     <!-- bower:js -->
     <!-- endbower -->
 
@@ -72,6 +75,7 @@
     <script src="src/app/common/services/userService.js"></script>
     <script src="src/app/common/services/authorizationService.js"></script>
     <script src="src/app/common/services/unauthorizedInterceptorService.js"></script>
+    <script src="src/app/common/resources/communicationService.js"></script>
     <script src="src/app/navigation/navigationController.js"></script>
     <script src="src/app/navigation/navigationService.js"></script>
 
