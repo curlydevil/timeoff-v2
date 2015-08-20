@@ -5,6 +5,7 @@
 
     function routeConfig($stateProvider, $urlRouterProvider, $httpProvider) {
         $httpProvider.interceptors.push('UnauthorizedInterceptorService');
+        $httpProvider.defaults.withCredentials = true;
         $urlRouterProvider.otherwise('/');
 
         var views = {
@@ -137,14 +138,11 @@
         }
 
         function resolveLogOut(authorizationService) {
-            return authorizationService.logOut();
+            authorizationService.logOut();
         }
 
         function dashboardPermissionCheck(authorizationService, $state) {
-            return authorizationService.resolveUserAccess(views.dashboard)
-                .catch(function () {
-                    $state.go('login');
-                });
+            return authorizationService.resolveUserAccess(views.dashboard);
         }
 
         function absenceRequestsPermissionCheck(authorizationService) {

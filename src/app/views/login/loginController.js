@@ -1,9 +1,9 @@
 (function () {
     'use strict';
-    angular.module('timeoff').controller('LoginController', ['authorizationService',
+    angular.module('timeoff').controller('LoginController', ['authorizationService', '$state',
                                                              LoginController]);
 
-    function LoginController(authorizationService) {
+    function LoginController(authorizationService, $state) {
         var vm = this;
         vm.user = {};
 
@@ -12,11 +12,9 @@
         function logIn(username, password) {
             authorizationService.logIn(vm.user)
                 .then(function (data) {
-                    humane.log('Logged in as "' + vm.user.userName + '"');
-                    console.log(data);
+                    $state.go('dashboard');
                 }, function (data) {
-                    humane.log('Login error');
-                    console.log(data);
+                    humane.log(data.data.Message);
                 });
         }
     }

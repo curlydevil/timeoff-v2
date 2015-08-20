@@ -55,30 +55,45 @@
 
         function canUserAccess(viewName) {
             var accessRoles = viewsRestrictions[viewName];
-            return userService.getCurrentUser() && (!accessRoles.length ||
+            return userService.getCurrentUser().loggedIn && (!accessRoles.length ||
                 _.intersection(accessRoles, userService.getCurrentUser().roles).length);
         }
 
         function resolveUserAccess(viewName) {
             var userAccess = $q.defer();
+            if (userService.getCurrentUser().loggedIn) {
+                makeSimpleRolescheck(userAccess, viewName);
+            } else {
+                userService.fetchUserData().then(function () {
+                    makeSimpleRolescheck(userAccess, viewName);
+                }, userAccess.reject);
+            }
+            return userAccess.promise
+                .catch(function () {
+                    if (!$state.current.name) {
+                        $state.go('login');
+                    }
+                });
+        }
 
-            if (userService.getCurrentUser() && canUserAccess(viewName)) {
+        function makeSimpleRolescheck(userAccess, viewName) {
+            if (canUserAccess(viewName)) {
                 userAccess.resolve();
             } else {
                 userAccess.reject();
             }
-
-            return userAccess.promise;
         }
 
         function logIn(user) {
             return communicationService.logIn(user).then(
-                userService.loadUser);
+                userService.fetchUserData);
         }
 
         function logOut() {
-            userService.unloadUser();
-            return $q.resolve();
+            return communicationService.logOut().then(function () {
+                userService.unloadUser();
+                $state.go('login');
+            });
         }
 
         return {

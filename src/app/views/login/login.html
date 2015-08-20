@@ -11,7 +11,7 @@
             <br/>
             <div class="input-group">
                 <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
-                <input type="password" class="form-control" ng-model="vm.user.password" ng-trim="false" maxlength="64" placeholder="Password" required>
+                <input type="password" class="form-control" ng-model="vm.user.password" ng-trim="false" maxlength="64" placeholder="Password" required enter-press="vm.logIn()">
             </div>
             <br/>
             <button type="button" class="btn btn-primary btn-block" title="Log in" ng-click="vm.logIn()">

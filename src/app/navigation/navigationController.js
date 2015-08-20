@@ -15,6 +15,7 @@
         vm.isTabAllowed = isTabAllowed;
         vm.getNavigationItems = getNavigationItems;
         vm.getUser = getUser;
+        vm.logOut = logOut;
 
         function getNavigationItems() {
             return navigationService.getNavigationItems();
@@ -34,6 +35,10 @@
 
         function isTabActive(stateName) {
             return $state.current.name === stateName;
+        }
+
+        function logOut() {
+            authorizationService.logOut();
         }
     }
 }());
