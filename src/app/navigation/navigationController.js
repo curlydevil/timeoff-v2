@@ -30,7 +30,7 @@
         }
 
         function isLoggedIn() {
-            return userService.getCurrentUser() !== null;
+            return userService.getCurrentUser().loggedIn;
         }
 
         function isTabActive(stateName) {

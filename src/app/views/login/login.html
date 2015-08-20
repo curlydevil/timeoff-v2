@@ -1,4 +1,4 @@
-<div>
+<form name="loginForm">
     <div class="panel panel-primary screen-center login-form">
         <div class="panel-heading" style="font-size: large">
             Log in to proceed
@@ -6,17 +6,18 @@
         <div class="panel-body">
             <div class="input-group logon-input">
                 <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-                <input type="text" class="form-control" ng-model="vm.user.userName" maxlength="30" placeholder="Username" required>
+                <input type="text" class="form-control" ng-model="vm.user.userName" maxlength="30" ng-minlength="3" placeholder="Username" name="loginBox" required ng-class="{'has-error': loginForm.loginBox.$invalid && loginForm.loginBox.$dirty}">
             </div>
             <br/>
             <div class="input-group">
                 <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
-                <input type="password" class="form-control" ng-model="vm.user.password" ng-trim="false" maxlength="64" placeholder="Password" required enter-press="vm.logIn()">
+                <input type="password" class="form-control" ng-model="vm.user.password" ng-trim="false" maxlength="64" ng-minlength="3" placeholder="Password" name="passBox" required enter-press="vm.logIn(loginForm.loginBox.$valid && loginForm.passBox.$valid)" ng-class="{'has-error': loginForm.passBox.$invalid &&
+                                     loginForm.passBox.$dirty}">
             </div>
             <br/>
-            <button type="button" class="btn btn-primary btn-block" title="Log in" ng-click="vm.logIn()">
+            <button type="button" class="btn btn-primary btn-block" title="Log in" ng-click="vm.logIn(loginForm.loginBox.$valid && loginForm.passBox.$valid)">
                 Log in
             </button>
         </div>
     </div>
-</div>
+</form>

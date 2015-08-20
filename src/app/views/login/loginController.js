@@ -9,7 +9,11 @@
 
         vm.logIn = logIn;
 
-        function logIn(username, password) {
+        function logIn(isValid) {
+            if (!isValid) {
+                return;
+            }
+
             authorizationService.logIn(vm.user)
                 .then(function (data) {
                     $state.go('dashboard');
