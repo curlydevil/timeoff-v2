@@ -18,6 +18,11 @@
             ],
             absenceRequests: [],
             'absenceRequests.my': [],
+            'absenceRequests.new': [],
+            'absenceRequests.view': [],
+            'absenceRequests.hr': [userRoles.HR],
+            'absenceRequests.sm': [userRoles.SM],
+            'absenceRequests.dm': [userRoles.DM],
             employees: [
                 userRoles.SM,
                 userRoles.DM,
