@@ -12,7 +12,7 @@
         }
 
         function fetchUserData() {
-            return communicationService.getUserInfo().then(function (data) {
+            return communicationService.user.getUserInfo().then(function (data) {
                 currentUser.fill(data.data);
                 getUserpic();
             });
@@ -23,7 +23,7 @@
         }
 
         function getUserpic() {
-            return communicationService.getUserpic().then(function (data) {
+            return communicationService.user.getUserpic().then(function (data) {
                 currentUser.picture = data.data.ImageData;
             });
         }

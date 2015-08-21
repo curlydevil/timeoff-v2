@@ -16,7 +16,7 @@
             dashboard: 'dashboard',
             login: 'login',
             tasks: 'tasks',
-            absenceRequests: 'absenceRequests',
+            absenceRequests: 'absenceRequests.my',
             employees: 'employees',
             specialDays: 'specialDays',
             employeeGroups: 'employeeGroups',

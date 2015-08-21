@@ -4,13 +4,24 @@
                                                                communicationService]);
 
     function communicationService($http, $resource) {
-        var baseUrl = 'https://localhost:44300/';
+        var baseUrl = 'https://localhost:44300/api/';
 
-        var requestReasonsUrl = baseUrl + 'api/AbsenceRequestReason/GetAbsenceRequestReasons';
-        var logOnUrl = baseUrl + 'api/account/LogOn';
-        var logOutUrl = baseUrl + 'api/account/SignOut';
-        var getUserInfoUrl = baseUrl + 'api/account/GetCurrentUserInfo';
-        var getUserpicUrl = baseUrl + 'api/employee/GetCurrentEmployeeImageAsBase64String';
+        var requestReasonsUrl = baseUrl + 'AbsenceRequestReason/GetAbsenceRequestReasons';
+        var logOnUrl = baseUrl + 'account/LogOn';
+        var logOutUrl = baseUrl + 'account/SignOut';
+        var getUserInfoUrl = baseUrl + 'account/GetCurrentUserInfo';
+        var getUserpicUrl = baseUrl + 'employee/GetCurrentEmployeeImageAsBase64String';
+
+        var userCommunications = {
+            logIn: logIn,
+            getUserInfo: getUserInfo,
+            getUserpic: getUserpic,
+            logOut: logOut
+        };
+
+        var absenceRequestsCommunications = {
+
+        };
 
         function logIn(user) {
             return $http.post(logOnUrl, user);
@@ -29,10 +40,7 @@
         }
 
         return {
-            logIn: logIn,
-            getUserInfo: getUserInfo,
-            getUserpic: getUserpic,
-            logOut: logOut
+            user: userCommunications,
         };
     }
 }());

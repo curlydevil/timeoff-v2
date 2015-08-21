@@ -52,6 +52,7 @@
                 }
             })
             .state(views.absenceRequests, {
+                abstract: true,
                 url: '/absenceRequests',
                 controller: 'AbsenceRequestsController',
                 controllerAs: 'vm',

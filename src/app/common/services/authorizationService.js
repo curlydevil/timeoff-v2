@@ -17,6 +17,7 @@
                 userRoles.HR
             ],
             absenceRequests: [],
+            'absenceRequests.my': [],
             employees: [
                 userRoles.SM,
                 userRoles.DM,
@@ -85,19 +86,18 @@
         }
 
         function logIn(user) {
-            return communicationService.logIn(user).then(
+            return communicationService.user.logIn(user).then(
                 userService.fetchUserData);
         }
 
         function logOut() {
-            return communicationService.logOut().then(function () {
+            return communicationService.user.logOut().then(function () {
                 userService.unloadUser();
                 $state.go('login');
             });
         }
 
         return {
-            getViewsRestrictions: getViewsRestrictions,
             canUserAccess: canUserAccess,
             resolveUserAccess: resolveUserAccess,
             logIn: logIn,
