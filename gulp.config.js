@@ -8,24 +8,15 @@
         var index = root + 'index.html';
 
         var config = {
-            alljs: clientApp + '**/*.js',
-            htmltemplates: clientApp + '**/*.html',
-            fonts: root + 'vendor/bootstrap/fonts/**/*.*',
-            origin: '../youtube-api-app/**/*.*',
+            alljs: [
+                clientApp + '**/*.js',
+                clientApp + '*.js'
+            ],
             build: build,
             clientApp: clientApp,
             index: index,
             root: root,
             tmp: tmp,
-
-            templateCache: {
-                file: 'templates.js',
-                options: {
-                    module: 'ytApp',
-                    standAlone: false,
-                    root: 'src/'
-                }
-            }
         };
 
         return config;
