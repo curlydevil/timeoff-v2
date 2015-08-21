@@ -6,11 +6,15 @@
         return {
             restrict: 'A',
             link: function (scope, elm, attrs) {
-                elm.chosen({
-                    allow_single_deselect: true
+                scope.$watch(attrs.ngModel, function () {
+                    elm.trigger('chosen:updated');
                 });
                 scope.$watchCollection(attrs.chosen, function () {
                     elm.trigger('chosen:updated');
+                });
+
+                elm.chosen({
+                    allow_single_deselect: true
                 });
             }
         };
