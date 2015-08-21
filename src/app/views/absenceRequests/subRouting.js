@@ -10,7 +10,7 @@
                 url: '/my',
                 controller: 'MyRequestsController',
                 controllerAs: 'vm',
-                templateUrl: 'src/app/views/absenceRequests/myRequests/myRequests.html',
+                templateUrl: 'src/app/views/absenceRequests/my/myRequests.html',
                 resolve: {
                     checkAuth: ['authorizationService', myRequestsPermissionCheck]
                 }

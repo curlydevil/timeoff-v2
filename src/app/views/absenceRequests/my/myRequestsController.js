@@ -5,8 +5,6 @@
 
     function MyRequestsController(communicationService) {
         var vm = this;
-
-        vm.title = 'My requests';
     }
 
 }());
