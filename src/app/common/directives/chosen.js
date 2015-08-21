@@ -6,15 +6,21 @@
         return {
             restrict: 'A',
             link: function (scope, elm, attrs) {
-                scope.$watch(attrs.ngModel, function () {
+                var unwatchModel = scope.$watch(attrs.ngModel, function () {
                     elm.trigger('chosen:updated');
                 });
-                scope.$watchCollection(attrs.chosen, function () {
+
+                var unwatchSource = scope.$watchCollection(attrs.chosen, function () {
                     elm.trigger('chosen:updated');
                 });
 
                 elm.chosen({
                     allow_single_deselect: true
+                });
+
+                scope.$on('$destroy', function () {
+                    unwatchModel();
+                    unwatchSource();
                 });
             }
         };
