@@ -23,16 +23,15 @@
 <body ng-app="timeoff" ng-strict-di>
     <nav class="navbar navbar-inverse" ng-controller="NavBarController as vm">
         <div class="container">
-            <a ui-sref="dashboard" class="navbar-brand">Time OFF</a>
-
             <div class="navbar-header">
-                <button class="navbar-toggle" ng-click="vm.isCollapsed = !vm.isCollapsed">
+                <button class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false">
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
+                <a ui-sref="dashboard" class="navbar-brand">Time OFF</a>
             </div>
-            <div class="navbar-collapse" collapse='vm.isCollapsed' ng-if="vm.isLoggedIn()">
+            <div id="navbar" class="collapse navbar-collapse" ng-if="vm.isLoggedIn()">
                 <ul class="nav navbar-nav">
                     <li ng-repeat="navItem in vm.getNavigationItems()" ng-if="vm.isTabAllowed(navItem)" ng-class="{ active: vm.isTabActive(navItem.name)}">
                         <a ui-sref='{{navItem.name}}'>{{navItem.title}}</a>
