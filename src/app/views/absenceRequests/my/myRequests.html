@@ -5,12 +5,61 @@
         </div>
     </div>
 
-    <table class="table table-responsive table-striped table-hover">
+    <table class="table table-responsive table-striped table-hover text-center">
         <thead>
-
+            <tr></tr>
+            <tr>
+                <th class="text-center">
+                    Created
+                </th>
+                <th class="text-center">
+                    Start
+                </th>
+                <th class="text-center">
+                    End
+                </th>
+                <th class="text-center">
+                    Period
+                </th>
+                <th class="text-center">
+                    Reason
+                </th>
+                <th class="text-center">
+                    Stage
+                </th>
+            </tr>
         </thead>
         <tbody>
+            <tr ng-repeat="request in vm.requests.Entities">
+                <td>
+                    <span>{{request.Created | date:"dd MMM"}}</span>
+                    <span class="hidden-sm hidden-xs">{{request.Created | date:"yyyy"}}</span>
 
+                </td>
+                <td>
+                    <span>{{request.StartDate | date:"dd MMM"}}</span>
+                    <span class="hidden-sm hidden-xs">{{request.StartDate | date:"yyyy"}}</span>
+                </td>
+                <td>
+                    <span>{{request.EndDate | date:"dd MMM"}}</span>
+                    <span class="hidden-sm hidden-xs">{{request.EndDate | date:"yyyy"}}</span>
+                </td>
+                <td>
+                    <span ng-if="vm.isAllDayRequest(request.Period)">
+                        <ng-pluralize count="{{request.Period / 8}}"
+                                      when="{
+                                            '1': '{} day',
+                                            'other': '{} days'
+                                            }"></ng-pluralize>
+                    </span>
+                    <span ng-if="!vm.isAllDayRequest(request.Period)">{{(request.StartTime | date:"HH:mm") + ' to ' + (request.EndTime | date:"HH:mm")}}</span></td>
+                <td>
+                    <span>{{request.ReasonDescription}}</span>
+                </td>
+                <td>
+                    <span>{{request.StageDescription}}</span>
+                </td>
+            </tr>
         </tbody>
     </table>
 </div>

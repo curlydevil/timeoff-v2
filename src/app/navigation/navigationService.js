@@ -22,7 +22,7 @@
                 'Tasks'));
 
             navItems.push(new NavigationItem(viewsNames.absenceRequests,
-                'Absence requests'));
+                'Requests'));
 
             navItems.push(new NavigationItem(viewsNames.employees,
                 'Employees'));
@@ -31,13 +31,13 @@
                 'Special days'));
 
             navItems.push(new NavigationItem(viewsNames.employeeGroups,
-                'Employee groups'));
+                'Groups'));
 
             navItems.push(new NavigationItem(viewsNames.reports,
                 'Reports'));
 
             navItems.push(new NavigationItem(viewsNames.employeePositions,
-                'Employee positions'));
+                'Positions'));
 
             navItems.push(new NavigationItem(viewsNames.logs,
                 'Logs'));
