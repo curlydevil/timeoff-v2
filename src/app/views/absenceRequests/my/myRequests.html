@@ -1,65 +1,78 @@
 <div>
-    <div class="table">
-        <div class="row">
-            <!-- FILTERS -->
+    <div class="container" name="filters">
+        <div class="col-md-4 container" name="requestStageFilter">
+            <label>Stage</label>
+            <select ng-model="vm.filter.stageId" chosen="vm.requestStages" ng-options="stage.Id as stage.Description for stage in vm.requestStages" data-placeholder="None" ng-change="vm.loadRequests()">
+                <option value="0"></option>
+            </select>
+        </div>
+
+        <div class="col-md-4" name="fromDateFilter">
+
+        </div>
+        <div class="col-md-4" name="toDateFilter">
+
         </div>
     </div>
+    <br/>
+    <br/>
+    <div class="container col-lg-12">
+        <table class="table table-responsive table-striped table-hover text-center">
+            <thead>
+                <tr></tr>
+                <tr>
+                    <th class="text-center">
+                        Created
+                    </th>
+                    <th class="text-center">
+                        Start
+                    </th>
+                    <th class="text-center">
+                        End
+                    </th>
+                    <th class="text-center">
+                        Period
+                    </th>
+                    <th class="text-center">
+                        Reason
+                    </th>
+                    <th class="text-center">
+                        Stage
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="request in vm.requests.Entities">
+                    <td>
+                        <span>{{request.Created | date:"dd MMM"}}</span>
+                        <span class="hidden-sm hidden-xs">{{request.Created | date:"yyyy"}}</span>
 
-    <table class="table table-responsive table-striped table-hover text-center">
-        <thead>
-            <tr></tr>
-            <tr>
-                <th class="text-center">
-                    Created
-                </th>
-                <th class="text-center">
-                    Start
-                </th>
-                <th class="text-center">
-                    End
-                </th>
-                <th class="text-center">
-                    Period
-                </th>
-                <th class="text-center">
-                    Reason
-                </th>
-                <th class="text-center">
-                    Stage
-                </th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr ng-repeat="request in vm.requests.Entities">
-                <td>
-                    <span>{{request.Created | date:"dd MMM"}}</span>
-                    <span class="hidden-sm hidden-xs">{{request.Created | date:"yyyy"}}</span>
-
-                </td>
-                <td>
-                    <span>{{request.StartDate | date:"dd MMM"}}</span>
-                    <span class="hidden-sm hidden-xs">{{request.StartDate | date:"yyyy"}}</span>
-                </td>
-                <td>
-                    <span>{{request.EndDate | date:"dd MMM"}}</span>
-                    <span class="hidden-sm hidden-xs">{{request.EndDate | date:"yyyy"}}</span>
-                </td>
-                <td>
-                    <span ng-if="vm.isAllDayRequest(request.Period)">
+                    </td>
+                    <td>
+                        <span>{{request.StartDate | date:"dd MMM"}}</span>
+                        <span class="hidden-sm hidden-xs">{{request.StartDate | date:"yyyy"}}</span>
+                    </td>
+                    <td>
+                        <span>{{request.EndDate | date:"dd MMM"}}</span>
+                        <span class="hidden-sm hidden-xs">{{request.EndDate | date:"yyyy"}}</span>
+                    </td>
+                    <td>
+                        <span ng-if="vm.isAllDayRequest(request.Period)">
                         <ng-pluralize count="{{request.Period / 8}}"
                                       when="{
                                             '1': '{} day',
                                             'other': '{} days'
                                             }"></ng-pluralize>
                     </span>
-                    <span ng-if="!vm.isAllDayRequest(request.Period)">{{(request.StartTime | date:"HH:mm") + ' to ' + (request.EndTime | date:"HH:mm")}}</span></td>
-                <td>
-                    <span>{{request.ReasonDescription}}</span>
-                </td>
-                <td>
-                    <span>{{request.StageDescription}}</span>
-                </td>
-            </tr>
-        </tbody>
-    </table>
+                        <span ng-if="!vm.isAllDayRequest(request.Period)">{{(request.StartTime | date:"HH:mm") + ' to ' + (request.EndTime | date:"HH:mm")}}</span></td>
+                    <td>
+                        <span>{{request.ReasonDescription}}</span>
+                    </td>
+                    <td>
+                        <span>{{request.StageDescription}}</span>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
 </div>

@@ -1,9 +1,9 @@
 (function () {
     'use strict';
-    angular.module('timeoff').controller('MyRequestsController', ['communicationService',
+    angular.module('timeoff').controller('MyRequestsController', ['$q', 'communicationService',
                                                                   MyRequestsController]);
 
-    function MyRequestsController(communicationService) {
+    function MyRequestsController($q, communicationService) {
         var DEFAULT_PAGE_SIZE = 10;
         var DEFAULT_ORDER_BY = 'CreatedDesc';
         var vm = this;
@@ -20,6 +20,25 @@
             employeeId: null,
             employeeGroupId: ''
         };
+        vm.requestStages = [];
+        vm.requestReasons = [];
+        vm.loadRequests = loadRequests;
+
+        function loadStages() {
+            return communicationService.absenceRequests
+                .getRequestStages()
+                .then(function (data) {
+                    vm.requestStages = data.data;
+                });
+        }
+
+        function loadReasons() {
+            return communicationService.absenceRequests
+                .getRequestReasons()
+                .then(function (data) {
+                    vm.requestReasons = data.data;
+                });
+        }
 
         function loadRequests() {
             return communicationService
@@ -37,7 +56,7 @@
             return period > 0 && period % 8 === 0;
         }
 
-        loadRequests();
+        $q.all([loadReasons(), loadStages()]).then(loadRequests);
     }
 
 }());
