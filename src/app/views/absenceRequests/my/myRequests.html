@@ -25,10 +25,7 @@
                         Created
                     </th>
                     <th class="text-center">
-                        Start
-                    </th>
-                    <th class="text-center">
-                        End
+                        Date(s)
                     </th>
                     <th class="text-center">
                         Period
@@ -50,10 +47,7 @@
                     </td>
                     <td>
                         <span>{{request.StartDate | date:"dd MMM"}}</span>
-                        <span class="hidden-sm hidden-xs">{{request.StartDate | date:"yyyy"}}</span>
-                    </td>
-                    <td>
-                        <span>{{request.EndDate | date:"dd MMM"}}</span>
+                        <span ng-if="request.Period / 8 > 1"> to {{request.EndDate | date:"dd MMM"}}</span>
                         <span class="hidden-sm hidden-xs">{{request.EndDate | date:"yyyy"}}</span>
                     </td>
                     <td>
