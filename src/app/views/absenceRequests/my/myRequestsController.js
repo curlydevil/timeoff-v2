@@ -1,9 +1,10 @@
 (function () {
     'use strict';
-    angular.module('timeoff').controller('MyRequestsController', ['$q', 'communicationService',
+    angular.module('timeoff')
+        .controller('MyRequestsController', ['$q', '$filter', 'communicationService',
                                                                   MyRequestsController]);
 
-    function MyRequestsController($q, communicationService) {
+    function MyRequestsController($q, $filter, communicationService) {
         var DEFAULT_PAGE_SIZE = 10;
         var DEFAULT_ORDER_BY = 'CreatedDesc';
         var vm = this;
@@ -23,6 +24,25 @@
         vm.requestStages = [];
         vm.requestReasons = [];
         vm.loadRequests = loadRequests;
+        vm.getDatesRepresentation = getDatesRepresentation;
+
+        function getDatesRepresentation(request) {
+            var multiDayRequest = request.Period / 8 > 1;
+            var dateFilter = $filter('date');
+            var str = null;
+
+            if (multiDayRequest) {
+                var mixedMonths = new Date(request.StartDate).getMonth() !== new Date(request.EndDate).getMonth();
+                str = dateFilter(request.StartDate, mixedMonths ? 'dd MMM' : 'dd');
+                str += ' - ' + dateFilter(request.EndDate, 'dd MMM');
+            } else {
+                str = dateFilter(request.StartDate, 'dd MMM');
+            }
+
+            str += ' ' + dateFilter(request.EndDate, 'yyyy');
+
+            return str;
+        }
 
         function loadStages() {
             return communicationService.absenceRequests
