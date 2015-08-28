@@ -10,13 +10,13 @@
         <div class="col-md-3 container" name="fromDateFilter">
             <label>From</label>
             <div>
-                <input class="form-control" type="date" ng-model="vm.filter.fromDate">
+                <input class="form-control" type="date" ng-model="vm.filter.fromDate" ng-model-options="{ debounce: { 'default': 500, 'blur': 0 } }" ng-change="vm.loadRequests()">
             </div>
         </div>
         <div class="col-md-3 container" name="toDateFilter">
             <label>To</label>
             <div>
-                <input class="form-control" type="date" ng-model="vm.filter.toDate">
+                <input class="form-control" type="date" ng-model="vm.filter.toDate" ng-model-options="{ debounce: { 'default': 500, 'blur': 0 } }" ng-change="vm.loadRequests()">
             </div>
         </div>
         <div class="col-md-3 container" name="slimView">
