@@ -1,11 +1,10 @@
 (function () {
     'use strict';
-    angular.module('timeoff').config(['$stateProvider', '$urlRouterProvider', '$httpProvider',
-                                      routeConfig]);
+    angular.module('timeoff')
+        .config(['$stateProvider', '$urlRouterProvider', routeConfig]);
 
-    function routeConfig($stateProvider, $urlRouterProvider, $httpProvider) {
-        $httpProvider.interceptors.push('UnauthorizedInterceptorService');
-        $httpProvider.defaults.withCredentials = true;
+    function routeConfig($stateProvider, $urlRouterProvider) {
+
         $urlRouterProvider.otherwise('/');
 
         var views = {
