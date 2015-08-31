@@ -1,33 +1,42 @@
 (function () {
     'use strict';
     angular.module('timeoff')
-        .controller('MyRequestsController', ['$q', '$filter', 'communicationService',
+        .controller('MyRequestsController', ['$q', '$filter', 'communicationService', 'enumService',
                                                                   MyRequestsController]);
 
-    function MyRequestsController($q, $filter, communicationService) {
+    function MyRequestsController($q, $filter, communicationService, enumService) {
         var DEFAULT_PAGE_SIZE = 10;
-        var DEFAULT_ORDER_BY = 'CreatedDesc';
+        var DEFAULT_ORDER_COLUMN = 'Created';
+        var DEFAULT_ORDER_TYPE = 'Desc';
+
         var vm = this;
 
+        vm.slimView = true;
+        vm.getDatesRepresentation = getDatesRepresentation;
         vm.isAllDayRequest = isAllDayRequest;
+        vm.loadRequests = loadRequests;
+        vm.reSort = reSort;
+
+        vm.requestStages = [];
+        vm.requestReasons = [];
+
         vm.requests = {};
         vm.filter = {
             pageNumber: 1,
             pageSize: DEFAULT_PAGE_SIZE,
-            orderBy: DEFAULT_ORDER_BY,
             stageId: '',
             fromDate: '',
             toDate: '',
             employeeId: null,
-            employeeGroupId: ''
+            employeeGroupId: '',
+            orderColumn: DEFAULT_ORDER_COLUMN,
+            orderType: DEFAULT_ORDER_TYPE
         };
-        vm.requestStages = [];
-        vm.requestReasons = [];
-        vm.loadRequests = loadRequests;
-        vm.getDatesRepresentation = getDatesRepresentation;
+
+        vm.sorting = enumService.getSortingOptions();
 
         function getDatesRepresentation(request) {
-            var multiDayRequest = request.Period / 8 > 1;
+            var multiDayRequest = (request.Period / 8) > 1;
             var dateFilter = $filter('date');
             var str = null;
 
@@ -74,6 +83,21 @@
 
         function isAllDayRequest(period) {
             return period > 0 && period % 8 === 0;
+        }
+
+        function reSort(column) {
+            if (vm.slimView)
+
+                if (vm.filter.orderColumn === column) {
+                    if (vm.filter.orderType === vm.sorting.order.asc) {
+                        vm.filter.orderType = vm.sorting.order.desc;
+                    } else {
+                        vm.filter.orderType = vm.sorting.order.asc;
+                    }
+                }
+
+            vm.filter.orderColumn = column;
+            loadRequests();
         }
 
         $q.all([loadReasons(), loadStages()]).then(loadRequests);

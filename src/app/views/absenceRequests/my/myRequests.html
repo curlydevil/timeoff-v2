@@ -1,26 +1,37 @@
 <div>
     <div class="container" name="filters">
-        <div class="col-md-3 container" name="requestStageFilter">
-            <label>Stage</label>
-            <select class="form-control" ng-model="vm.filter.stageId" chosen="vm.requestStages" ng-options="stage.Id as stage.Description for stage in vm.requestStages" data-placeholder="None" ng-change="vm.loadRequests()">
-                <option value="0"></option>
-            </select>
-        </div>
+        <div class="col-md-10">
+            <div class="col-md-3 container" name="requestStageFilter">
+                <label>Stage</label>
+                <select class="form-control" ng-model="vm.filter.stageId" chosen="vm.requestStages" ng-options="stage.Id as stage.Description for stage in vm.requestStages" data-placeholder="None" ng-change="vm.loadRequests()">
+                    <option value="0"></option>
+                </select>
+            </div>
 
-        <div class="col-md-3 container" name="fromDateFilter">
-            <label>From</label>
-            <div>
-                <input class="form-control" type="date" ng-model="vm.filter.fromDate" ng-model-options="{ debounce: { 'default': 500, 'blur': 0 } }" ng-change="vm.loadRequests()">
+            <div class="col-md-3 container" name="fromDateFilter">
+                <label>From</label>
+                <div>
+                    <input class="form-control" type="date" ng-model="vm.filter.fromDate" ng-model-options="{ debounce: { 'default': 500, 'blur': 0 } }" ng-change="vm.loadRequests()">
+                </div>
             </div>
-        </div>
-        <div class="col-md-3 container" name="toDateFilter">
-            <label>To</label>
-            <div>
-                <input class="form-control" type="date" ng-model="vm.filter.toDate" ng-model-options="{ debounce: { 'default': 500, 'blur': 0 } }" ng-change="vm.loadRequests()">
+
+            <div class="col-md-3 container" name="toDateFilter">
+                <label>To</label>
+                <div>
+                    <input class="form-control" type="date" ng-model="vm.filter.toDate" ng-model-options="{ debounce: { 'default': 500, 'blur': 0 } }" ng-change="vm.loadRequests()">
+                </div>
             </div>
+            <!-- Reason filtering not implemented on back-end!
+            <div class="col-md-3 container" name="requestReasonFilter">
+                <label>Stage</label>
+                <select class="form-control" ng-model="vm.filter.reasonId" chosen="vm.requestReasons" ng-options="reason.Id as reason.Description for reason in vm.requestReasons" data-placeholder="All" ng-change="vm.loadRequests()">
+                    <option value="0"></option>
+                </select>
+            </div>
+            -->
         </div>
-        <div class="col-md-3 container" name="slimView">
-            <label>Slim view</label>
+        <div class="col-md-2" name="slimView">
+            <label>Slim</label>
             <div>
                 <input type="checkbox" ng-model="vm.slimView">
             </div>
@@ -28,30 +39,30 @@
     </div>
     <br/>
     <br/>
-    <div class="container col-lg-12">
+    <div class="container">
         <table class="table table-responsive table-striped table-hover text-center">
             <thead>
                 <tr>
                     <th class="text-center">
-                        <span>Created</span>
+                        <a ng-click="vm.reSort(vm.sorting.column.created)">Created</a>
                     </th>
                     <th class="text-center" ng-if="vm.slimView">
-                        <span>Date(s)</span>
+                        <a ng-click="vm.reSort(vm.sorting.column.startDate)">Date(s)</a>
                     </th>
                     <th class="text-center" ng-if="!vm.slimView">
-                        <span>Start</span>
+                        <a ng-click="vm.reSort(vm.sorting.column.startDate)">Start</a>
                     </th>
                     <th class="text-center" ng-if="!vm.slimView">
-                        <span>End</span>
+                        <a ng-click="vm.reSort(vm.sorting.column.endDate)">End</a>
                     </th>
                     <th class="text-center">
                         <span>Period</span>
                     </th>
                     <th class="text-center">
-                        <span>Reason</span>
+                        <a ng-click="vm.reSort(vm.sorting.column.reason)">Reason</a>
                     </th>
                     <th class="text-center">
-                        <span>Stage</span>
+                        <a ng-click="vm.reSort(vm.sorting.column.stage)">Stage</a>
                     </th>
                 </tr>
             </thead>
@@ -87,5 +98,8 @@
                 </tr>
             </tbody>
         </table>
+        <div id="pagi">
+            <pagination class="pagination-sm" ng-if="vm.requests.TotalCount" total-items="vm.requests.TotalCount" ng-model="vm.filter.pageNumber" items-per-page="vm.filter.pageSize" boundary-links="true" rotate="false" ng-change="vm.loadRequests()"></pagination>
+        </div>
     </div>
 </div>

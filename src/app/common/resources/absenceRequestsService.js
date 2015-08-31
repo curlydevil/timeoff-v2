@@ -19,7 +19,7 @@
                 params: {
                     pageNumber: filter.pageNumber,
                     pageSize: filter.pageSize,
-                    orderBy: filter.orderBy,
+                    orderBy: filter.orderColumn + filter.orderType,
                     stageId: filter.stageId,
                     fromDate: filter.fromDate,
                     toDate: filter.toDate,

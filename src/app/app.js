@@ -1,7 +1,7 @@
 (function () {
     'use strict';
 
-    angular.module('timeoff', ['ui.router',
+    angular.module('timeoff', ['ui.router', 'ui.bootstrap',
                                'common.services'])
         .config(['$httpProvider', httpConfig]);
 

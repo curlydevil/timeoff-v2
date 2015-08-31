@@ -27,6 +27,39 @@
             overtimes: 'overtimes'
         };
 
+        var sortingOptions = {
+            order: {
+                asc: 'Asc',
+                desc: 'Desc'
+            },
+            column: {
+                created: 'Created',
+                startDate: 'StartDate',
+                endDate: 'EndDate',
+                reason: 'Reason',
+                status: 'Status',
+                stage: 'Stage',
+                employee: 'Employee',
+                sm: 'ServiceManager',
+                dm: 'DepartmentManager',
+                firstName: 'FirstName',
+                lastName: 'LastName',
+                login: 'Login',
+                startWorkingDate: 'StartWorkingDate',
+                type: 'Type',
+                absenceRequest: {
+                    madeBy: 'AbsenceRequestBy',
+                    period: 'AbsenceRequestPeriod',
+                    created: 'AbsenceRequestCreated'
+                },
+                overtime: {
+                    compensation: 'TypeCompensation',
+                    hoursOrQuantity: 'HoursOrQuantity',
+                    isBillable: 'IsBillable',
+                }
+            }
+        };
+
         function getUserRoles() {
             return userRoles;
         }
@@ -35,9 +68,14 @@
             return viewsNames;
         }
 
+        function getSortingOptions() {
+            return sortingOptions;
+        }
+
         return {
             getUserRoles: getUserRoles,
-            getViewsNames: getViewsNames
+            getViewsNames: getViewsNames,
+            getSortingOptions: getSortingOptions
         };
     }
 }());
