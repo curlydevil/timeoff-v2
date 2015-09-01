@@ -64,6 +64,9 @@
                     <th class="text-center">
                         <a ng-click="vm.reSort(vm.sorting.column.stage)">Stage</a>
                     </th>
+                    <th class="text-center">
+                        <span>Waiting for</span>
+                    </th>
                 </tr>
             </thead>
             <tbody>
@@ -94,6 +97,9 @@
                     </td>
                     <td>
                         <span>{{request.StageDescription}}</span>
+                    </td>
+                    <td>
+                        <span>{{request.WaitingFor}}</span>
                     </td>
                 </tr>
             </tbody>
