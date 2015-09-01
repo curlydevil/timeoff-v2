@@ -5,7 +5,6 @@
     function AbsenceRequestsController() {
         var vm = this;
 
-        vm.title = 'Absence Requests';
     }
 
 }());

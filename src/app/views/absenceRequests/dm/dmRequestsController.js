@@ -1,8 +1,9 @@
 (function () {
     'use strict';
-    angular.module('timeoff').controller('DmRequestsController', ['', DmRequestsController]);
+    angular.module('timeoff')
+        .controller('DmRequestsController', ['communicationService', DmRequestsController]);
 
-    function DmRequestsController() {
+    function DmRequestsController(communicationService) {
 
     }
 

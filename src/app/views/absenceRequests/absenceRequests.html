@@ -1,7 +1,25 @@
 <div>
     <div class="table">
         <div class="row">
-            <!-- NAV -->
+            <nav class="navbar navbar-default" ng-controller="NavBarController as nav">
+                <div class="container">
+                    <div class="navbar-header">
+                        <button class="navbar-toggle collapsed" data-toggle="collapse" data-target="#absenceRequests-navbar" aria-expanded="false">
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                        <a class="navbar-brand" ui-sref="dashboard">Absence RQs</a>
+                    </div>
+                    <div id="absenceRequests-navbar" class="collapse navbar-collapse">
+                        <ul class="nav navbar-nav">
+                            <li ng-repeat="navItem in nav.getAbsenceRequestsNavigationItems()" ng-if="nav.isTabAllowed(navItem)" ng-class="{ active: nav.isTabActive(navItem.name)}">
+                                <a ui-sref='{{navItem.name}}'><i class="glyphicon glyphicon-plus" ng-if="$first"></i> {{navItem.title}}</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
         </div>
         <div ui-view></div>
     </div>

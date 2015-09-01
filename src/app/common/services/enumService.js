@@ -16,7 +16,14 @@
             dashboard: 'dashboard',
             login: 'login',
             tasks: 'tasks',
-            absenceRequests: 'absenceRequests.my',
+            absenceRequests: {
+                my: 'absenceRequests.my',
+                hr: 'absenceRequests.hr',
+                sm: 'absenceRequests.sm',
+                dm: 'absenceRequests.dm',
+                add: 'absenceRequests.add',
+                view: 'absenceRequests.view'
+            },
             employees: 'employees',
             specialDays: 'specialDays',
             employeeGroups: 'employeeGroups',

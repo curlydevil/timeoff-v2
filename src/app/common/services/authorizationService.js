@@ -18,7 +18,7 @@
             ],
             absenceRequests: [],
             'absenceRequests.my': [],
-            'absenceRequests.new': [],
+            'absenceRequests.add': [],
             'absenceRequests.view': [],
             'absenceRequests.hr': [userRoles.HR],
             'absenceRequests.sm': [userRoles.SM],

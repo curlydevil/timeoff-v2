@@ -1,8 +1,9 @@
 (function () {
     'use strict';
-    angular.module('timeoff').controller('AddRequestController', ['', AddRequestController]);
+    angular.module('timeoff')
+        .controller('AddRequestController', ['communicationService', AddRequestController]);
 
-    function AddRequestController() {
+    function AddRequestController(communicationService) {
 
     }
 

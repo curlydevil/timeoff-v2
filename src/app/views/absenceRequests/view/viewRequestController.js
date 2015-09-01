@@ -1,8 +1,9 @@
 (function () {
     'use strict';
-    angular.module('timeoff').controller('ViewRequestController', ['', ViewRequestController]);
+    angular.module('timeoff')
+        .controller('ViewRequestController', ['communicationService', ViewRequestController]);
 
-    function ViewRequestController() {
+    function ViewRequestController(communicationService) {
 
     }
 

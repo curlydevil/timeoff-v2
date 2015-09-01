@@ -12,13 +12,19 @@
         vm.isLoggedIn = isLoggedIn;
 
         vm.isTabActive = isTabActive;
+        vm.isSubTabActive = isSubTabActive;
         vm.isTabAllowed = isTabAllowed;
-        vm.getNavigationItems = getNavigationItems;
+        vm.getMainNavigationItems = getMainNavigationItems;
+        vm.getAbsenceRequestsNavigationItems = getAbsenceRequestsNavigationItems;
         vm.getUser = getUser;
         vm.logOut = logOut;
 
-        function getNavigationItems() {
-            return navigationService.getNavigationItems();
+        function getMainNavigationItems() {
+            return navigationService.getMainNavigationItems();
+        }
+
+        function getAbsenceRequestsNavigationItems() {
+            return navigationService.getAbsenceRequestsNavigationItems();
         }
 
         function isTabAllowed(navItem) {
@@ -35,6 +41,10 @@
 
         function isTabActive(stateName) {
             return $state.current.name === stateName;
+        }
+
+        function isSubTabActive(stateName) {
+            return $state.current.name.split('.')[0] === stateName.split('.')[0];
         }
 
         function logOut() {
