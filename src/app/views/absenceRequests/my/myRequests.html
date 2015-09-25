@@ -3,7 +3,7 @@
         <div class="col-md-10">
             <div class="col-md-3 container" name="requestStageFilter">
                 <label>Stage</label>
-                <select class="form-control" ng-model="vm.filter.stageId" chosen="vm.requestStages" ng-options="stage.Id as stage.Description for stage in vm.requestStages" data-placeholder="None" ng-change="vm.loadRequests()">
+                <select class="form-control" ng-model="vm.filter.stageId" chosen="vm.requestStages" ng-options="stage.id as stage.description for stage in vm.requestStages" data-placeholder="None" ng-change="vm.loadRequests()">
                     <option value="0"></option>
                 </select>
             </div>
