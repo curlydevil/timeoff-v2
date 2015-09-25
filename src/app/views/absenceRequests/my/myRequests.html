@@ -70,42 +70,42 @@
                 </tr>
             </thead>
             <tbody>
-                <tr ng-repeat="request in vm.requests.Entities">
+                <tr ng-repeat="request in vm.requests.entities">
                     <td>
-                        <span>{{request.Created | date:"dd MMM yy"}}</span>
+                        <span>{{request.created | date:"dd MMM yy"}}</span>
                     </td>
                     <td ng-if="!vm.slimView">
-                        <span>{{request.StartDate | date:"dd MMM yy"}}</span>
+                        <span>{{request.startDate | date:"dd MMM yy"}}</span>
                     </td>
                     <td ng-if="!vm.slimView">
-                        <span>{{request.EndDate | date:"dd MMM yy"}}</span>
+                        <span>{{request.endDate | date:"dd MMM yy"}}</span>
                     </td>
                     <td ng-if="vm.slimView">
                         <span>{{vm.getDatesRepresentation(request)}}</span>
                     </td>
                     <td>
-                        <span ng-if="vm.isAllDayRequest(request.Period)">
-                        <ng-pluralize count="{{request.Period / 8}}"
+                        <span ng-if="vm.isAllDayRequest(request.period)">
+                        <ng-pluralize count="{{request.period / 8}}"
                                       when="{
                                             '1': '{} day',
                                             'other': '{} days'
                                             }"></ng-pluralize>
                     </span>
-                        <span ng-if="!vm.isAllDayRequest(request.Period)">{{(request.StartTime | date:"HH:mm") + ' to ' + (request.EndTime | date:"HH:mm")}}</span></td>
+                        <span ng-if="!vm.isAllDayRequest(request.period)">{{(request.startTime | date:"HH:mm") + ' to ' + (request.endTime | date:"HH:mm")}}</span></td>
                     <td>
-                        <span>{{request.ReasonDescription}}</span>
+                        <span>{{request.reasonDescription}}</span>
                     </td>
                     <td>
-                        <span>{{request.StageDescription}}</span>
+                        <span>{{request.stageDescription}}</span>
                     </td>
                     <td>
-                        <span>{{request.WaitingFor}}</span>
+                        <span>{{request.waitingFor}}</span>
                     </td>
                 </tr>
             </tbody>
         </table>
         <div id="pagi">
-            <pagination class="pagination-sm" ng-if="vm.requests.TotalCount" total-items="vm.requests.TotalCount" ng-model="vm.filter.pageNumber" items-per-page="vm.filter.pageSize" boundary-links="true" rotate="false" ng-change="vm.loadRequests()"></pagination>
+            <pagination class="pagination-sm" ng-if="vm.requests.totalCount" total-items="vm.requests.totalCount" ng-model="vm.filter.pageNumber" items-per-page="vm.filter.pageSize" boundary-links="true" rotate="false" ng-change="vm.loadRequests()"></pagination>
         </div>
     </div>
 </div>
