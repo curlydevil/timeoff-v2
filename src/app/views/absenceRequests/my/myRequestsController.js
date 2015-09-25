@@ -36,19 +36,19 @@
         vm.sorting = enumService.getSortingOptions();
 
         function getDatesRepresentation(request) {
-            var multiDayRequest = (request.Period / 8) > 1;
+            var multiDayRequest = (request.period / 8) > 1;
             var dateFilter = $filter('date');
             var str = null;
 
             if (multiDayRequest) {
-                var mixedMonths = new Date(request.StartDate).getMonth() !== new Date(request.EndDate).getMonth();
-                str = dateFilter(request.StartDate, mixedMonths ? 'dd MMM' : 'dd');
-                str += ' - ' + dateFilter(request.EndDate, 'dd MMM');
+                var mixedMonths = new Date(request.startDate).getMonth() !== new Date(request.endDate).getMonth();
+                str = dateFilter(request.startDate, mixedMonths ? 'dd MMM' : 'dd');
+                str += ' - ' + dateFilter(request.endDate, 'dd MMM');
             } else {
-                str = dateFilter(request.StartDate, 'dd MMM');
+                str = dateFilter(request.startDate, 'dd MMM');
             }
 
-            str += ' ' + dateFilter(request.EndDate, 'yyyy');
+            str += ' ' + dateFilter(request.endDate, 'yyyy');
 
             return str;
         }
