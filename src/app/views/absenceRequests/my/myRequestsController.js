@@ -86,15 +86,13 @@
         }
 
         function reSort(column) {
-            if (vm.slimView)
-
-                if (vm.filter.orderColumn === column) {
-                    if (vm.filter.orderType === vm.sorting.order.asc) {
-                        vm.filter.orderType = vm.sorting.order.desc;
-                    } else {
-                        vm.filter.orderType = vm.sorting.order.asc;
-                    }
+            if (vm.filter.orderColumn === column) {
+                if (vm.filter.orderType === vm.sorting.order.asc) {
+                    vm.filter.orderType = vm.sorting.order.desc;
+                } else {                        
+                    vm.filter.orderType = vm.sorting.order.asc;
                 }
+            }
 
             vm.filter.orderColumn = column;
             loadRequests();
